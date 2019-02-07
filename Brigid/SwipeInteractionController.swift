@@ -8,33 +8,32 @@
 
 import UIKit
 
-protocol SwipeInteractionControllerDelegate: class {
-    var sourceViewController: UIViewController { get }
-    var destinationViewController: UIViewController { get }
-}
-
 final class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
     
-    private var interactionInProgress = false
+    var interactionInProgress = false
     private var shouldCompleteTransition = false
+    
     private let transitionType: TransitionType
-    private weak var delegate: SwipeInteractionControllerDelegate?
+    private weak var sourceViewController: UIViewController?
+    private weak var destinationViewController: UIViewController?
     
-    init(transitionType: TransitionType) {
+    init(transitionType: TransitionType,
+         sourceViewController: UIViewController?,
+         destinationViewController: UIViewController?) {
         self.transitionType = transitionType
+        self.sourceViewController = sourceViewController
+        self.destinationViewController = destinationViewController
+        
         super.init()
-    }
-    
-    func setDelegate(to delegate: SwipeInteractionControllerDelegate) {
-        self.delegate = delegate
+        
         prepareGestureRecognizers()
     }
     
     private func prepareGestureRecognizers() {
-        guard let view = delegate?.sourceViewController.view else { return }
+        guard let view = sourceViewController?.view else { return }
         let gesture = UIScreenEdgePanGestureRecognizer(target: self,
                                                        action: #selector(handleGesture(gestureRecognizer:)))
-        gesture.edges = transitionType.activeEdge
+        gesture.edges = transitionType.edge
         
         view.addGestureRecognizer(gesture)
     }
@@ -42,41 +41,50 @@ final class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
     @objc
     private func handleGesture(gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
         
-        guard let sourceView = delegate?.sourceViewController,
-            let destinationView = delegate?.destinationViewController,
+        guard let sourceView = sourceViewController,
+            let destinationView = destinationViewController,
             let gestureView = gestureRecognizer.view?.superview else { return }
         
         let translation = gestureRecognizer.translation(in: gestureView)
-        var progress = (translation.x / 200)
-        progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
+        let progress = calculateProgress(for: translation)
         
         switch gestureRecognizer.state {
         case .began:
             interactionInProgress = true
-            sourceView.dismiss(animated: true, completion: nil)
             sourceView.present(destinationView, animated: true, completion: nil)
         case .changed:
-            shouldCompleteTransition = progress > 0.5
+            shouldCompleteTransition = progress > transitionType.progressNeededForCompletion
             update(progress)
-        case .cancelled:
-            interactionInProgress = false
-            cancel()
-        case .ended:
+        case .cancelled, .ended:
             interactionInProgress = false
             if shouldCompleteTransition {
                 finish()
             } else {
                 cancel()
             }
-        default:
+        case .possible, .failed:
             break
+        }
+    }
+    
+    private func calculateProgress(for translation: CGPoint) -> CGFloat {
+        
+        switch transitionType {
+        case .fromLeft, .fromRight:
+            let screenWidth = sourceViewController?.view.frame.width ?? UIScreen.main.bounds.width
+            let progress = abs(translation.x / screenWidth)
+            return CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
+        case .fromTop, .fromBottom:
+            let screenHeight = sourceViewController?.view.frame.height ?? UIScreen.main.bounds.height
+            let progress = abs(translation.y / screenHeight)
+            return CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
         }
     }
 }
 
 private extension TransitionType {
     
-    var activeEdge: UIRectEdge {
+    var edge: UIRectEdge {
         switch self {
         case .fromTop:
             return .top
@@ -86,6 +94,15 @@ private extension TransitionType {
             return .bottom
         case .fromRight:
             return .right
+        }
+    }
+    
+    var progressNeededForCompletion: CGFloat {
+        switch self {
+        case .fromLeft, .fromRight:
+            return 0.5
+        case .fromTop, .fromBottom:
+            return 0.3
         }
     }
 }

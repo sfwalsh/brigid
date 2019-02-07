@@ -50,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupInitialViewController() {
-        let centerView = CenterViewController()
-        window?.rootViewController = centerView
+        let view = InitialViewController()
+        window?.rootViewController = view
     }
 
 }

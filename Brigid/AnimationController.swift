@@ -8,22 +8,10 @@
 
 import UIKit
 
-struct AnimationHelper {
-    static func yRotation(_ angle: Double) -> CATransform3D {
-        return CATransform3DMakeRotation(CGFloat(angle), 0.0, 1.0, 0.0)
-    }
-    
-    static func perspectiveTransform(for containerView: UIView) {
-        var transform = CATransform3DIdentity
-        transform.m34 = -0.026
-        containerView.layer.transform = transform
-    }
-}
-
 final class AnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     
     private enum Defaults {
-        static let transitionDuration: Double = 0.6
+        static let transitionDuration: Double = 0.5
     }
     
     private let type: TransitionType
@@ -44,67 +32,61 @@ final class AnimationController: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromVC = transitionContext.viewController(forKey: .from),
-            let toVC = transitionContext.viewController(forKey: .to)
+        guard let toVC = transitionContext.viewController(forKey: .to)
             else {
                 return
         }
         
-        
         toVC.view.transform = type.startingTransform(for: toVC.view)
-        toVC.view.alpha = 0.0
+        toVC.view.alpha = type.startingAlpha
         
         let containerView = transitionContext.containerView
-        containerView.insertSubview(toVC.view, at: 0)
-        
-        AnimationHelper.perspectiveTransform(for: fromVC.view)
+        containerView.addSubview(toVC.view)
         
         let duration = transitionDuration(using: transitionContext)
+        let options = animationOptions(for: transitionContext)
         
-        UIView.animateKeyframes(
-            withDuration: duration,
-            delay: 0,
-            options: .calculationModeCubic,
-            animations: {
-                
-                // MARK: Alpha
-
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/6) {
-                    toVC.view.alpha = 0.52
-                }
-                
-                UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
-                    toVC.view.alpha = 1.0
-                }
-                
-                // MARK: Translation
-                
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
-                    toVC.view.transform = CGAffineTransform.identity
-                })
-        },
-            completion: { _ in
-                if transitionContext.transitionWasCancelled {
-                    toVC.view.removeFromSuperview()
-                }
-                
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        })
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       options: options,
+                       animations: {
+                        toVC.view.alpha = 1.0
+                        toVC.view.transform = CGAffineTransform.identity
+        }) { _ in
+            if transitionContext.transitionWasCancelled {
+                toVC.view.removeFromSuperview()
+            }
+            
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }
+    }
+    
+    private func animationOptions(for context: UIViewControllerContextTransitioning) -> UIView.AnimationOptions {
+        return context.isInteractive ? .curveLinear : .curveEaseInOut
     }
 }
 
 private extension TransitionType {
     
+    var startingAlpha: CGFloat {
+        switch self {
+        case .fromTop, .fromBottom:
+            return 0.8
+        case .fromLeft, .fromRight:
+            return 0.26
+        }
+    }
+    
     func startingTransform(for view: UIView) -> CGAffineTransform {
         switch self {
         case .fromTop:
-            return .identity
+            return CGAffineTransform(translationX: 0, y: -view.frame.height)
         case .fromLeft:
             return CGAffineTransform(translationX: -view.frame.width, y: 0)
         case .fromBottom:
-            return .identity
+            return CGAffineTransform(translationX: 0, y: view.frame.height)
         case .fromRight:
-            return CGAffineTransform(translationX: view.frame.width * 2, y: 0)
+            return CGAffineTransform(translationX: view.frame.width, y: 0)
         }
     }
 }

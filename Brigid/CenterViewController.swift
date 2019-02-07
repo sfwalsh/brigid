@@ -10,13 +10,41 @@ import UIKit
 
 final class CenterViewController: UIViewController {
     
-    let leftViewController: UIViewController = {
-        let viewController = DetailViewController()
+    private let dismissButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Dismiss", for: .normal)
         
+        return button
+    }()
+    
+    private let leftButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Left", for: .normal)
+        
+        return button
+    }()
+    
+    let topViewController: UIViewController = {
+        let viewController = DetailViewController()
         return viewController
     }()
     
-    private var leftTransitioningController: TransitioningController?
+    let leftViewController: UIViewController = {
+        let viewController = DetailViewController()
+        return viewController
+    }()
+    
+    let bottomViewController: UIViewController = {
+        let viewController = DetailViewController()
+        return viewController
+    }()
+    
+    let rightViewController: UIViewController = {
+        let viewController = DetailViewController()
+        return viewController
+    }()
+    
+    private let swipeableTransitionCoordinator: SwipeableTransitionCoordinator
 
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "dummy"))
@@ -26,15 +54,18 @@ final class CenterViewController: UIViewController {
     }()
     
     init() {
+        self.swipeableTransitionCoordinator = SwipeableTransitionCoordinator()
         super.init(nibName: nil, bundle: nil)
-        leftTransitioningController = TransitioningController(type: .fromLeft,
-                                                              sourceViewController: self,
-                                                              destinationViewController: leftViewController)
-        performInitialSetup()
+        swipeableTransitionCoordinator.sourceViewController = self
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        performInitialSetup()
     }
 }
 
@@ -43,19 +74,62 @@ final class CenterViewController: UIViewController {
 extension CenterViewController {
     
     private func performInitialSetup() {
-        leftViewController.modalPresentationStyle = .overCurrentContext
+
+     
+        dismissButton.addTarget(self, action: #selector(dismissMe), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(showLeftView), for: .touchUpInside)
+        
         view.backgroundColor = .black
 
         view.addSubview(backgroundImageView)
+        view.addSubview(dismissButton)
+        view.addSubview(leftButton)
+        
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor)
-        backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100.0),
+            dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dismissButton.widthAnchor.constraint(equalToConstant: 100.0),
+            dismissButton.heightAnchor.constraint(equalToConstant: 50.0)
+            ])
+        
+        leftButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            leftButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
+            leftButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            leftButton.widthAnchor.constraint(equalToConstant: 100.0),
+            leftButton.heightAnchor.constraint(equalToConstant: 50.0)
+            ])
     
-//        let tap = UITapGestureRecognizer(target: self,
-//                                         action: #selector(presentDetailView))
-//        backgroundImageView.isUserInteractionEnabled = true
-//        backgroundImageView.addGestureRecognizer(tap)
+        
+        swipeableTransitionCoordinator.addDestinationViewController(destinationViewController: topViewController,
+                                                                    forTransitionType: .fromTop)
+        swipeableTransitionCoordinator.addDestinationViewController(destinationViewController: leftViewController,
+                                                                    forTransitionType: .fromLeft)
+        swipeableTransitionCoordinator.addDestinationViewController(destinationViewController: bottomViewController,
+                                                                    forTransitionType: .fromBottom)
+        swipeableTransitionCoordinator.addDestinationViewController(destinationViewController: rightViewController,
+                                                                    forTransitionType: .fromRight)
+    }
+    
+    @objc
+    private func dismissMe() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    private func showLeftView() {
+        present(leftViewController, animated: true, completion: nil)
     }
 }

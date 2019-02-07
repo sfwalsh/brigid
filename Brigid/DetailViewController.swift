@@ -24,6 +24,11 @@ final class DetailViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension DetailViewController {

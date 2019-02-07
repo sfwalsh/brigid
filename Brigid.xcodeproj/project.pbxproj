@@ -14,7 +14,8 @@
 		68C421A62209E5C500BC61E1 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A52209E5C500BC61E1 /* AnimationController.swift */; };
 		68C421A82209E5EA00BC61E1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A72209E5EA00BC61E1 /* DetailViewController.swift */; };
 		68C421AA2209ED2A00BC61E1 /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A92209ED2A00BC61E1 /* SwipeInteractionController.swift */; };
-		68C421AC220B6D7700BC61E1 /* TransitioningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AB220B6D7700BC61E1 /* TransitioningController.swift */; };
+		68C421AC220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AB220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift */; };
+		68C421AE220C8E7100BC61E1 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AD220C8E7100BC61E1 /* InitialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,8 @@
 		68C421A52209E5C500BC61E1 /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		68C421A72209E5EA00BC61E1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		68C421A92209ED2A00BC61E1 /* SwipeInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
-		68C421AB220B6D7700BC61E1 /* TransitioningController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningController.swift; sourceTree = "<group>"; };
+		68C421AB220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableTransitionCoordinator.swift; sourceTree = "<group>"; };
+		68C421AD220C8E7100BC61E1 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				68C421932208BB8B00BC61E1 /* AppDelegate.swift */,
+				68C421AD220C8E7100BC61E1 /* InitialViewController.swift */,
 				68C421952208BB8B00BC61E1 /* CenterViewController.swift */,
-				68C421AB220B6D7700BC61E1 /* TransitioningController.swift */,
+				68C421AB220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift */,
 				68C421A72209E5EA00BC61E1 /* DetailViewController.swift */,
 				68C421A92209ED2A00BC61E1 /* SwipeInteractionController.swift */,
 				68C421A52209E5C500BC61E1 /* AnimationController.swift */,
@@ -144,11 +147,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C421A62209E5C500BC61E1 /* AnimationController.swift in Sources */,
+				68C421AE220C8E7100BC61E1 /* InitialViewController.swift in Sources */,
 				68C421AA2209ED2A00BC61E1 /* SwipeInteractionController.swift in Sources */,
 				68C421962208BB8B00BC61E1 /* CenterViewController.swift in Sources */,
 				68C421942208BB8B00BC61E1 /* AppDelegate.swift in Sources */,
 				68C421A82209E5EA00BC61E1 /* DetailViewController.swift in Sources */,
-				68C421AC220B6D7700BC61E1 /* TransitioningController.swift in Sources */,
+				68C421AC220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
