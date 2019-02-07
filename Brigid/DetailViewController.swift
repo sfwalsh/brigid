@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  Brigid
 //
-//  Created by Stephen Work on 05/02/2019.
+//  Created by Stephen Walsh on 05/02/2019.
 //  Copyright © 2019 Stephen Walsh. All rights reserved.
 //
 
@@ -29,7 +29,7 @@ final class DetailViewController: UIViewController {
 extension DetailViewController {
     
     private func performInitialSetup() {
-        view.backgroundColor = .green
+        view.backgroundColor = UIColor.clear.withAlphaComponent(0.7)
         
         view.addSubview(blurView)
         

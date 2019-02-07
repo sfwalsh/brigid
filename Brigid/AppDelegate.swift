@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Brigid
 //
-//  Created by Stephen Work on 04/02/2019.
+//  Created by Stephen Walsh on 04/02/2019.
 //  Copyright © 2019 Stephen Walsh. All rights reserved.
 //
 
