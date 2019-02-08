@@ -7,29 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6809442E220DBC9700D8161E /* SNKPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6809442D220DBC9700D8161E /* SNKPresentable.swift */; };
+		68094431220DBE6000D8161E /* SNKTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68094430220DBE6000D8161E /* SNKTransitionType.swift */; };
+		68094433220DBE7700D8161E /* SNKDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68094432220DBE7700D8161E /* SNKDismissable.swift */; };
+		68094435220DBF4600D8161E /* SNKTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68094434220DBF4600D8161E /* SNKTransitionController.swift */; };
 		68C421942208BB8B00BC61E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421932208BB8B00BC61E1 /* AppDelegate.swift */; };
 		68C421962208BB8B00BC61E1 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421952208BB8B00BC61E1 /* CenterViewController.swift */; };
 		68C4219B2208BB8C00BC61E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68C4219A2208BB8C00BC61E1 /* Assets.xcassets */; };
 		68C4219E2208BB8C00BC61E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C4219C2208BB8C00BC61E1 /* LaunchScreen.storyboard */; };
-		68C421A62209E5C500BC61E1 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A52209E5C500BC61E1 /* AnimationController.swift */; };
+		68C421A62209E5C500BC61E1 /* SNKPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A52209E5C500BC61E1 /* SNKPresentationAnimationController.swift */; };
 		68C421A82209E5EA00BC61E1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A72209E5EA00BC61E1 /* DetailViewController.swift */; };
-		68C421AA2209ED2A00BC61E1 /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A92209ED2A00BC61E1 /* SwipeInteractionController.swift */; };
-		68C421AC220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AB220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift */; };
+		68C421AA2209ED2A00BC61E1 /* SNKPresentationInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A92209ED2A00BC61E1 /* SNKPresentationInteractionController.swift */; };
+		68C421AC220B6D7700BC61E1 /* SNKTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AB220B6D7700BC61E1 /* SNKTransitionCoordinator.swift */; };
 		68C421AE220C8E7100BC61E1 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AD220C8E7100BC61E1 /* InitialViewController.swift */; };
+		68C421B0220CB21400BC61E1 /* SNKDismissalInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AF220CB21400BC61E1 /* SNKDismissalInteractionController.swift */; };
+		68C421B2220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421B1220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6809442D220DBC9700D8161E /* SNKPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKPresentable.swift; sourceTree = "<group>"; };
+		68094430220DBE6000D8161E /* SNKTransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKTransitionType.swift; sourceTree = "<group>"; };
+		68094432220DBE7700D8161E /* SNKDismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKDismissable.swift; sourceTree = "<group>"; };
+		68094434220DBF4600D8161E /* SNKTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKTransitionController.swift; sourceTree = "<group>"; };
 		68C421902208BB8B00BC61E1 /* Brigid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brigid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C421932208BB8B00BC61E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68C421952208BB8B00BC61E1 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		68C4219A2208BB8C00BC61E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68C4219D2208BB8C00BC61E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68C4219F2208BB8C00BC61E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68C421A52209E5C500BC61E1 /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
+		68C421A52209E5C500BC61E1 /* SNKPresentationAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKPresentationAnimationController.swift; sourceTree = "<group>"; };
 		68C421A72209E5EA00BC61E1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		68C421A92209ED2A00BC61E1 /* SwipeInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
-		68C421AB220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableTransitionCoordinator.swift; sourceTree = "<group>"; };
+		68C421A92209ED2A00BC61E1 /* SNKPresentationInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKPresentationInteractionController.swift; sourceTree = "<group>"; };
+		68C421AB220B6D7700BC61E1 /* SNKTransitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKTransitionCoordinator.swift; sourceTree = "<group>"; };
 		68C421AD220C8E7100BC61E1 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		68C421AF220CB21400BC61E1 /* SNKDismissalInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKDismissalInteractionController.swift; sourceTree = "<group>"; };
+		68C421B1220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKDismissalAnimationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +55,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6809442F220DBE4B00D8161E /* Dummies */ = {
+			isa = PBXGroup;
+			children = (
+				68C421AD220C8E7100BC61E1 /* InitialViewController.swift */,
+				68C421952208BB8B00BC61E1 /* CenterViewController.swift */,
+				68C421A72209E5EA00BC61E1 /* DetailViewController.swift */,
+			);
+			path = Dummies;
+			sourceTree = "<group>";
+		};
 		68C421872208BB8B00BC61E1 = {
 			isa = PBXGroup;
 			children = (
@@ -63,12 +85,16 @@
 			isa = PBXGroup;
 			children = (
 				68C421932208BB8B00BC61E1 /* AppDelegate.swift */,
-				68C421AD220C8E7100BC61E1 /* InitialViewController.swift */,
-				68C421952208BB8B00BC61E1 /* CenterViewController.swift */,
-				68C421AB220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift */,
-				68C421A72209E5EA00BC61E1 /* DetailViewController.swift */,
-				68C421A92209ED2A00BC61E1 /* SwipeInteractionController.swift */,
-				68C421A52209E5C500BC61E1 /* AnimationController.swift */,
+				6809442F220DBE4B00D8161E /* Dummies */,
+				68094430220DBE6000D8161E /* SNKTransitionType.swift */,
+				6809442D220DBC9700D8161E /* SNKPresentable.swift */,
+				68094432220DBE7700D8161E /* SNKDismissable.swift */,
+				68C421AB220B6D7700BC61E1 /* SNKTransitionCoordinator.swift */,
+				68094434220DBF4600D8161E /* SNKTransitionController.swift */,
+				68C421A52209E5C500BC61E1 /* SNKPresentationAnimationController.swift */,
+				68C421B1220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift */,
+				68C421A92209ED2A00BC61E1 /* SNKPresentationInteractionController.swift */,
+				68C421AF220CB21400BC61E1 /* SNKDismissalInteractionController.swift */,
 				68C4219A2208BB8C00BC61E1 /* Assets.xcassets */,
 				68C4219C2208BB8C00BC61E1 /* LaunchScreen.storyboard */,
 				68C4219F2208BB8C00BC61E1 /* Info.plist */,
@@ -146,13 +172,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68C421A62209E5C500BC61E1 /* AnimationController.swift in Sources */,
+				6809442E220DBC9700D8161E /* SNKPresentable.swift in Sources */,
+				68C421A62209E5C500BC61E1 /* SNKPresentationAnimationController.swift in Sources */,
 				68C421AE220C8E7100BC61E1 /* InitialViewController.swift in Sources */,
-				68C421AA2209ED2A00BC61E1 /* SwipeInteractionController.swift in Sources */,
+				68094435220DBF4600D8161E /* SNKTransitionController.swift in Sources */,
+				68094431220DBE6000D8161E /* SNKTransitionType.swift in Sources */,
+				68C421B0220CB21400BC61E1 /* SNKDismissalInteractionController.swift in Sources */,
+				68C421B2220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift in Sources */,
+				68C421AA2209ED2A00BC61E1 /* SNKPresentationInteractionController.swift in Sources */,
+				68094433220DBE7700D8161E /* SNKDismissable.swift in Sources */,
 				68C421962208BB8B00BC61E1 /* CenterViewController.swift in Sources */,
 				68C421942208BB8B00BC61E1 /* AppDelegate.swift in Sources */,
 				68C421A82209E5EA00BC61E1 /* DetailViewController.swift in Sources */,
-				68C421AC220B6D7700BC61E1 /* SwipeableTransitionCoordinator.swift in Sources */,
+				68C421AC220B6D7700BC61E1 /* SNKTransitionCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

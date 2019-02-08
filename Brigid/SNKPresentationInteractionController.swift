@@ -8,16 +8,16 @@
 
 import UIKit
 
-final class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
+final class SNKPresentationInteractionController: UIPercentDrivenInteractiveTransition {
     
     var interactionInProgress = false
     private var shouldCompleteTransition = false
     
-    private let transitionType: TransitionType
+    private let transitionType: SNKTransitionType
     private weak var sourceViewController: UIViewController?
     private weak var destinationViewController: UIViewController?
     
-    init(transitionType: TransitionType,
+    init(transitionType: SNKTransitionType,
          sourceViewController: UIViewController?,
          destinationViewController: UIViewController?) {
         self.transitionType = transitionType
@@ -82,7 +82,7 @@ final class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
     }
 }
 
-private extension TransitionType {
+private extension SNKTransitionType {
     
     var edge: UIRectEdge {
         switch self {

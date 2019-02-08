@@ -24,6 +24,13 @@ final class CenterViewController: UIViewController {
         return button
     }()
     
+    private let rightButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Right", for: .normal)
+        
+        return button
+    }()
+    
     let topViewController: UIViewController = {
         let viewController = DetailViewController()
         return viewController
@@ -44,7 +51,7 @@ final class CenterViewController: UIViewController {
         return viewController
     }()
     
-    private let swipeableTransitionCoordinator: SwipeableTransitionCoordinator
+    private let swipeableTransitionCoordinator: SNKTransitionCoordinator
 
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "dummy"))
@@ -54,7 +61,7 @@ final class CenterViewController: UIViewController {
     }()
     
     init() {
-        self.swipeableTransitionCoordinator = SwipeableTransitionCoordinator()
+        self.swipeableTransitionCoordinator = SNKTransitionCoordinator()
         super.init(nibName: nil, bundle: nil)
         swipeableTransitionCoordinator.sourceViewController = self
     }
@@ -66,6 +73,11 @@ final class CenterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         performInitialSetup()
+        setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
+    }
+    
+    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+        return [.top, .bottom]
     }
 }
 
@@ -74,16 +86,16 @@ final class CenterViewController: UIViewController {
 extension CenterViewController {
     
     private func performInitialSetup() {
-
      
         dismissButton.addTarget(self, action: #selector(dismissMe), for: .touchUpInside)
         leftButton.addTarget(self, action: #selector(showLeftView), for: .touchUpInside)
-        
+        rightButton.addTarget(self, action: #selector(showRightView), for: .touchUpInside)
         view.backgroundColor = .black
 
         view.addSubview(backgroundImageView)
         view.addSubview(dismissButton)
         view.addSubview(leftButton)
+        view.addSubview(rightButton)
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -97,8 +109,8 @@ extension CenterViewController {
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100.0),
-            dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dismissButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             dismissButton.widthAnchor.constraint(equalToConstant: 100.0),
             dismissButton.heightAnchor.constraint(equalToConstant: 50.0)
             ])
@@ -112,6 +124,16 @@ extension CenterViewController {
             leftButton.heightAnchor.constraint(equalToConstant: 50.0)
             ])
     
+        
+        rightButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            rightButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
+            rightButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rightButton.widthAnchor.constraint(equalToConstant: 100.0),
+            rightButton.heightAnchor.constraint(equalToConstant: 50.0)
+            ])
+        
         
         swipeableTransitionCoordinator.addDestinationViewController(destinationViewController: topViewController,
                                                                     forTransitionType: .fromTop)
@@ -131,5 +153,10 @@ extension CenterViewController {
     @objc
     private func showLeftView() {
         present(leftViewController, animated: true, completion: nil)
+    }
+    
+    @objc
+    private func showRightView() {
+        present(rightViewController, animated: true, completion: nil)
     }
 }
