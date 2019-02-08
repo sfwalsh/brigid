@@ -30,7 +30,7 @@ final class SNKPresentationInteractionController: UIPercentDrivenInteractiveTran
     }
     
     private func prepareGestureRecognizers() {
-        guard let view = viewController?.presentationGestureListenerView(forTransitionType: transitionType) ?? viewController?.view else { return }
+        guard let view = viewController?.presentationGestureHandleView(forTransitionType: transitionType) ?? viewController?.view else { return }
         let gesture = createGestureRecognizer(forTransitionType: transitionType)
         view.addGestureRecognizer(gesture)
     }
@@ -103,16 +103,16 @@ extension SNKPresentationInteractionController {
     private func updateListenerViewTransform(for translation: CGPoint) {
         switch transitionType {
         case .fromLeft, .fromRight:
-            viewController?.presentationGestureListenerView(forTransitionType: transitionType)?.transform = CGAffineTransform(translationX: translation.x,
+            viewController?.presentationGestureHandleView(forTransitionType: transitionType)?.transform = CGAffineTransform(translationX: translation.x,
                                                                                                                                     y: 0)
         case .fromTop, .fromBottom:
-            viewController?.presentationGestureListenerView(forTransitionType: transitionType)?.transform = CGAffineTransform(translationX: 0,
+            viewController?.presentationGestureHandleView(forTransitionType: transitionType)?.transform = CGAffineTransform(translationX: 0,
                                                                                                                                     y: translation.y)
         }
     }
     
     private func resetListenerViewTransform() {
-        viewController?.presentationGestureListenerView(forTransitionType: transitionType)?.transform = .identity
+        viewController?.presentationGestureHandleView(forTransitionType: transitionType)?.transform = .identity
     }
 }
 

@@ -42,10 +42,10 @@ final class DetailViewController: UIViewController {
 
 extension DetailViewController: SNKPresentable {
     
-    func presentationGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
+    func dismissalGestureHandleView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
         switch transitionType {
         case .fromLeft, .fromRight:
-            return view
+            return nil
         case .fromTop, .fromBottom:
             // TODO: Should be some sort of drag indicator
             return view
@@ -65,7 +65,7 @@ extension DetailViewController: SNKPresentable {
 
 extension DetailViewController: SNKDismissable {
     
-    func dismissGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
+    func presentationGestureHandleView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
         switch transitionType {
         case .fromLeft, .fromRight:
             return nil

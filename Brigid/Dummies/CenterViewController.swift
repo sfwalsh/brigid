@@ -94,7 +94,7 @@ final class CenterViewController: UIViewController {
 
 extension CenterViewController: SNKPresentable {
     
-    func presentationGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
+    func presentationGestureHandleView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
         switch transitionType {
         case .fromTop:
             return topDragView

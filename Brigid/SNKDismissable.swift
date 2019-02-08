@@ -10,7 +10,7 @@ import UIKit
 
 protocol SNKDismissable {
     
-    func dismissGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView?
+    func dismissalGestureHandleView(forTransitionType transitionType: SNKTransitionType) -> UIView?
     
     func willBeginDismissalAnimation()
     func didEndDismissalAnimation()

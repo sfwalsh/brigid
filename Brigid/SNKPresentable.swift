@@ -10,7 +10,7 @@ import UIKit
 
 protocol SNKPresentable {
     
-    func presentationGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView?
+    func presentationGestureHandleView(forTransitionType transitionType: SNKTransitionType) -> UIView?
 
     func willBeginPresentationAnimation()
     func didEndPresentationAnimation()
