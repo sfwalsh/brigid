@@ -2,7 +2,7 @@
 //  SNKTransitionController.swift
 //  Brigid
 //
-//  Created by Stephen Work on 08/02/2019.
+//  Created by Stephen Walsh on 08/02/2019.
 //  Copyright © 2019 Stephen Walsh. All rights reserved.
 //
 
@@ -25,8 +25,6 @@ final class SNKTransitionController: NSObject, UIViewControllerTransitioningDele
         self.sourceViewController = sourceViewController
         self.destinationViewController = destinationViewController
 
-        
-        
         let presentationGestureView = SNKTransitionController.presentationGestureView(for: sourceViewController,
                                                                           transitionType: transitionType)
         let shouldTransformPresentationGestureView = SNKTransitionController.shouldTransformPresentationGestureView(for: sourceViewController,
@@ -34,8 +32,6 @@ final class SNKTransitionController: NSObject, UIViewControllerTransitioningDele
         
         let dismissalGestureView = SNKTransitionController.dismissalGestureView(for: destinationViewController,
                                                                                 transitionType: transitionType)
-        let shouldTransformDismissalGestureView = SNKTransitionController.shouldTransformDismissalGestureView(for: destinationViewController,
-                                                                                                              transitionType: transitionType)
         
         self.presentationInteractionController = SNKInteractionController(transitionType: transitionType,
                                                                           transitionContext: SNKTransitionContext.presentation(sourceViewController: sourceViewController, destinationViewController: destinationViewController),
@@ -45,7 +41,7 @@ final class SNKTransitionController: NSObject, UIViewControllerTransitioningDele
         self.dismissalInteractionController = SNKInteractionController(transitionType: transitionType,
                                                                        transitionContext: SNKTransitionContext.dismissal(viewController: destinationViewController),
                                                                        gestureView: dismissalGestureView,
-                                                                       transformsGestureView: shouldTransformDismissalGestureView)
+                                                                       transformsGestureView: false)
         super.init()
         
         destinationViewController?.modalPresentationStyle = .overCurrentContext
@@ -104,13 +100,5 @@ extension SNKTransitionController {
         }
         
         return dismissable?.view
-    }
-    
-    private static func shouldTransformDismissalGestureView(for dismissable: SNKDismissable?, transitionType: SNKTransitionType) -> Bool {
-        if let _ = dismissable?.dismissalGestureHandleView(forTransitionType: transitionType) {
-            return true
-        }
-        
-        return false
     }
 }

@@ -11,6 +11,7 @@
 		68094431220DBE6000D8161E /* SNKTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68094430220DBE6000D8161E /* SNKTransitionType.swift */; };
 		68094433220DBE7700D8161E /* SNKDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68094432220DBE7700D8161E /* SNKDismissable.swift */; };
 		68094435220DBF4600D8161E /* SNKTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68094434220DBF4600D8161E /* SNKTransitionController.swift */; };
+		68094439220DFDD500D8161E /* SNKTransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68094438220DFDD500D8161E /* SNKTransitionContext.swift */; };
 		68C421942208BB8B00BC61E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421932208BB8B00BC61E1 /* AppDelegate.swift */; };
 		68C421962208BB8B00BC61E1 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421952208BB8B00BC61E1 /* CenterViewController.swift */; };
 		68C4219B2208BB8C00BC61E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68C4219A2208BB8C00BC61E1 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		68094430220DBE6000D8161E /* SNKTransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKTransitionType.swift; sourceTree = "<group>"; };
 		68094432220DBE7700D8161E /* SNKDismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKDismissable.swift; sourceTree = "<group>"; };
 		68094434220DBF4600D8161E /* SNKTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKTransitionController.swift; sourceTree = "<group>"; };
+		68094438220DFDD500D8161E /* SNKTransitionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKTransitionContext.swift; sourceTree = "<group>"; };
 		68C421902208BB8B00BC61E1 /* Brigid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brigid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C421932208BB8B00BC61E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68C421952208BB8B00BC61E1 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				68C421A52209E5C500BC61E1 /* SNKPresentationAnimationController.swift */,
 				68C421B1220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift */,
 				68C421AF220CB21400BC61E1 /* SNKInteractionController.swift */,
+				68094438220DFDD500D8161E /* SNKTransitionContext.swift */,
 				68C4219A2208BB8C00BC61E1 /* Assets.xcassets */,
 				68C4219C2208BB8C00BC61E1 /* LaunchScreen.storyboard */,
 				68C4219F2208BB8C00BC61E1 /* Info.plist */,
@@ -176,6 +179,7 @@
 				68094431220DBE6000D8161E /* SNKTransitionType.swift in Sources */,
 				68C421B0220CB21400BC61E1 /* SNKInteractionController.swift in Sources */,
 				68C421B2220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift in Sources */,
+				68094439220DFDD500D8161E /* SNKTransitionContext.swift in Sources */,
 				68094433220DBE7700D8161E /* SNKDismissable.swift in Sources */,
 				68C421962208BB8B00BC61E1 /* CenterViewController.swift in Sources */,
 				68C421942208BB8B00BC61E1 /* AppDelegate.swift in Sources */,

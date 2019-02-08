@@ -22,19 +22,17 @@ final class DetailViewController: UIViewController {
         
         return button
     }()
+    
+    private var dragHandleView: UIView?
         
-    init() {
+    init(showsDragHandle: Bool) {
+        self.dragHandleView = showsDragHandle ? UIView() : nil
         super.init(nibName: nil, bundle: nil)
         performInitialSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
     }
 }
 
@@ -64,8 +62,7 @@ extension DetailViewController: SNKDismissable {
         case .fromLeft, .fromRight:
             return nil
         case .fromTop, .fromBottom:
-            // TODO: Should be some sort of drag indicator
-            return nil
+            return dragHandleView
         }
     }
     
@@ -106,8 +103,22 @@ extension DetailViewController {
             dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             dismissButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             dismissButton.widthAnchor.constraint(equalToConstant: 100.0),
-            dismissButton.heightAnchor.constraint(equalToConstant: 50.0)
+            dismissButton.heightAnchor.constraint(equalToConstant: 100.0)
             ])
+        
+        
+        if let dragHandleView = dragHandleView {
+            dragHandleView.backgroundColor = .green
+            view.addSubview(dragHandleView)
+            dragHandleView.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                dragHandleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                dragHandleView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 100),
+                dragHandleView.widthAnchor.constraint(equalToConstant: 100.0),
+                dragHandleView.heightAnchor.constraint(equalToConstant: 50.0)
+                ])
+        }
     }
     
     @objc

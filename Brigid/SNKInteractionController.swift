@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum SNKTransitionContext {
-    case presentation(sourceViewController: UIViewController?, destinationViewController: UIViewController?)
-    case dismissal(viewController: UIViewController?)
-}
-
 final class SNKInteractionController: UIPercentDrivenInteractiveTransition {
     
     var interactionInProgress = false

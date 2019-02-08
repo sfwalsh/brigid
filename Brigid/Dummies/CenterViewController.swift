@@ -32,22 +32,22 @@ final class CenterViewController: UIViewController {
     }()
     
     private let topViewController: DetailViewController = {
-        let viewController = DetailViewController()
+        let viewController = DetailViewController(showsDragHandle: true)
         return viewController
     }()
     
     private let leftViewController: DetailViewController = {
-        let viewController = DetailViewController()
+        let viewController = DetailViewController(showsDragHandle: false)
         return viewController
     }()
     
     private let bottomViewController: DetailViewController = {
-        let viewController = DetailViewController()
+        let viewController = DetailViewController(showsDragHandle: true)
         return viewController
     }()
     
     private let rightViewController: DetailViewController = {
-        let viewController = DetailViewController()
+        let viewController = DetailViewController(showsDragHandle: false)
         return viewController
     }()
     
