@@ -15,8 +15,8 @@ final class SNKTransitionController: NSObject, UIViewControllerTransitioningDele
     private weak var destinationViewController: SNKViewController?
     private weak var listenerView: UIView?
     
-    private let presentationInteractionController: SNKPresentationInteractionController
-    private let dismissalInteractionController: SNKDismissalInteractionController
+    private let presentationInteractionController: SNKInteractionController
+    private let dismissalInteractionController: SNKInteractionController
     
     init(with transitionType: SNKTransitionType,
          from sourceViewController: SNKPresentableViewController?,
@@ -25,12 +25,27 @@ final class SNKTransitionController: NSObject, UIViewControllerTransitioningDele
         self.sourceViewController = sourceViewController
         self.destinationViewController = destinationViewController
 
-        self.presentationInteractionController = SNKPresentationInteractionController(transitionType: transitionType,
-                                                                                      viewController: sourceViewController,
-                                                                               destinationViewController: destinationViewController)
         
-        self.dismissalInteractionController = SNKDismissalInteractionController(transitionType: transitionType,
-                                                                                viewController: destinationViewController)
+        
+        let presentationGestureView = SNKTransitionController.presentationGestureView(for: sourceViewController,
+                                                                          transitionType: transitionType)
+        let shouldTransformPresentationGestureView = SNKTransitionController.shouldTransformPresentationGestureView(for: sourceViewController,
+                                                                                                        transitionType: transitionType)
+        
+        let dismissalGestureView = SNKTransitionController.dismissalGestureView(for: destinationViewController,
+                                                                                transitionType: transitionType)
+        let shouldTransformDismissalGestureView = SNKTransitionController.shouldTransformDismissalGestureView(for: destinationViewController,
+                                                                                                              transitionType: transitionType)
+        
+        self.presentationInteractionController = SNKInteractionController(transitionType: transitionType,
+                                                                          transitionContext: SNKTransitionContext.presentation(sourceViewController: sourceViewController, destinationViewController: destinationViewController),
+                                                                          gestureView: presentationGestureView,
+                                                                          transformsGestureView: shouldTransformPresentationGestureView)
+        
+        self.dismissalInteractionController = SNKInteractionController(transitionType: transitionType,
+                                                                       transitionContext: SNKTransitionContext.dismissal(viewController: destinationViewController),
+                                                                       gestureView: dismissalGestureView,
+                                                                       transformsGestureView: shouldTransformDismissalGestureView)
         super.init()
         
         destinationViewController?.modalPresentationStyle = .overCurrentContext
@@ -59,5 +74,43 @@ extension SNKTransitionController {
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return dismissalInteractionController.interactionInProgress ? dismissalInteractionController : nil
+    }
+}
+
+
+// MARK: Static Helpers
+
+extension SNKTransitionController {
+    
+    private static func presentationGestureView(for presentable: SNKPresentableViewController?, transitionType: SNKTransitionType) -> UIView? {
+        if let handleView = presentable?.presentationGestureHandleView(forTransitionType: transitionType) {
+            return handleView
+        }
+        
+        return presentable?.view
+    }
+    
+    private static func shouldTransformPresentationGestureView(for presentable: SNKPresentable?, transitionType: SNKTransitionType) -> Bool {
+        if let _ = presentable?.presentationGestureHandleView(forTransitionType: transitionType) {
+            return true
+        }
+        
+        return false
+    }
+    
+    private static func dismissalGestureView(for dismissable: SNKDismissableViewController?, transitionType: SNKTransitionType) -> UIView? {
+        if let handleView = dismissable?.dismissalGestureHandleView(forTransitionType: transitionType) {
+            return handleView
+        }
+        
+        return dismissable?.view
+    }
+    
+    private static func shouldTransformDismissalGestureView(for dismissable: SNKDismissable?, transitionType: SNKTransitionType) -> Bool {
+        if let _ = dismissable?.dismissalGestureHandleView(forTransitionType: transitionType) {
+            return true
+        }
+        
+        return false
     }
 }

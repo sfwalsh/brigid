@@ -17,10 +17,9 @@
 		68C4219E2208BB8C00BC61E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C4219C2208BB8C00BC61E1 /* LaunchScreen.storyboard */; };
 		68C421A62209E5C500BC61E1 /* SNKPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A52209E5C500BC61E1 /* SNKPresentationAnimationController.swift */; };
 		68C421A82209E5EA00BC61E1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A72209E5EA00BC61E1 /* DetailViewController.swift */; };
-		68C421AA2209ED2A00BC61E1 /* SNKPresentationInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421A92209ED2A00BC61E1 /* SNKPresentationInteractionController.swift */; };
 		68C421AC220B6D7700BC61E1 /* SNKTransitionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AB220B6D7700BC61E1 /* SNKTransitionCoordinator.swift */; };
 		68C421AE220C8E7100BC61E1 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AD220C8E7100BC61E1 /* InitialViewController.swift */; };
-		68C421B0220CB21400BC61E1 /* SNKDismissalInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AF220CB21400BC61E1 /* SNKDismissalInteractionController.swift */; };
+		68C421B0220CB21400BC61E1 /* SNKInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421AF220CB21400BC61E1 /* SNKInteractionController.swift */; };
 		68C421B2220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C421B1220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +36,9 @@
 		68C4219F2208BB8C00BC61E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68C421A52209E5C500BC61E1 /* SNKPresentationAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKPresentationAnimationController.swift; sourceTree = "<group>"; };
 		68C421A72209E5EA00BC61E1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		68C421A92209ED2A00BC61E1 /* SNKPresentationInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKPresentationInteractionController.swift; sourceTree = "<group>"; };
 		68C421AB220B6D7700BC61E1 /* SNKTransitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKTransitionCoordinator.swift; sourceTree = "<group>"; };
 		68C421AD220C8E7100BC61E1 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		68C421AF220CB21400BC61E1 /* SNKDismissalInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKDismissalInteractionController.swift; sourceTree = "<group>"; };
+		68C421AF220CB21400BC61E1 /* SNKInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKInteractionController.swift; sourceTree = "<group>"; };
 		68C421B1220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNKDismissalAnimationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,8 +91,7 @@
 				68094434220DBF4600D8161E /* SNKTransitionController.swift */,
 				68C421A52209E5C500BC61E1 /* SNKPresentationAnimationController.swift */,
 				68C421B1220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift */,
-				68C421A92209ED2A00BC61E1 /* SNKPresentationInteractionController.swift */,
-				68C421AF220CB21400BC61E1 /* SNKDismissalInteractionController.swift */,
+				68C421AF220CB21400BC61E1 /* SNKInteractionController.swift */,
 				68C4219A2208BB8C00BC61E1 /* Assets.xcassets */,
 				68C4219C2208BB8C00BC61E1 /* LaunchScreen.storyboard */,
 				68C4219F2208BB8C00BC61E1 /* Info.plist */,
@@ -177,9 +174,8 @@
 				68C421AE220C8E7100BC61E1 /* InitialViewController.swift in Sources */,
 				68094435220DBF4600D8161E /* SNKTransitionController.swift in Sources */,
 				68094431220DBE6000D8161E /* SNKTransitionType.swift in Sources */,
-				68C421B0220CB21400BC61E1 /* SNKDismissalInteractionController.swift in Sources */,
+				68C421B0220CB21400BC61E1 /* SNKInteractionController.swift in Sources */,
 				68C421B2220CB7AE00BC61E1 /* SNKDismissalAnimationController.swift in Sources */,
-				68C421AA2209ED2A00BC61E1 /* SNKPresentationInteractionController.swift in Sources */,
 				68094433220DBE7700D8161E /* SNKDismissable.swift in Sources */,
 				68C421962208BB8B00BC61E1 /* CenterViewController.swift in Sources */,
 				68C421942208BB8B00BC61E1 /* AppDelegate.swift in Sources */,
