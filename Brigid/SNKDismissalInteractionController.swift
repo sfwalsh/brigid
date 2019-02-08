@@ -14,10 +14,10 @@ final class SNKDismissalInteractionController: UIPercentDrivenInteractiveTransit
     private var shouldCompleteTransition = false
     
     private let transitionType: SNKTransitionType
-    private weak var viewController: UIViewController?
+    private weak var viewController: SNKViewController?
     
     init(transitionType: SNKTransitionType,
-         viewController: UIViewController?) {
+         viewController: SNKViewController?) {
         self.transitionType = transitionType
         self.viewController = viewController
         
@@ -27,7 +27,7 @@ final class SNKDismissalInteractionController: UIPercentDrivenInteractiveTransit
     }
     
     private func prepareGestureRecognizers() {
-        guard let view = viewController?.view else { return }
+        guard let view = viewController?.dismissGestureListenerView(forTransitionType: transitionType) else { return }
         let gesture = createGestureRecognizer(forTransitionType: transitionType)
         view.addGestureRecognizer(gesture)
     }

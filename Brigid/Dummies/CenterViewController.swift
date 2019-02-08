@@ -31,22 +31,22 @@ final class CenterViewController: UIViewController {
         return button
     }()
     
-    let topViewController: UIViewController = {
+    let topViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
     
-    let leftViewController: UIViewController = {
+    let leftViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
     
-    let bottomViewController: UIViewController = {
+    let bottomViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
     
-    let rightViewController: UIViewController = {
+    let rightViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
@@ -73,11 +73,27 @@ final class CenterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         performInitialSetup()
-        setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
+    }
+}
+
+// MARK: SNKPresentable Implementation
+
+extension CenterViewController: SNKPresentable {
+    
+    func presentationGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
+        switch transitionType {
+        case .fromLeft, .fromRight:
+            return view
+        case .fromTop, .fromBottom:
+            // TODO: Something else
+            return view
+        }
     }
     
-    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-        return [.top, .bottom]
+    func willBeginPresentationAnimation() {
+    }
+    
+    func didEndPresentationAnimation() {
     }
 }
 

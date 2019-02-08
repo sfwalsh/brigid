@@ -15,12 +15,12 @@ final class SNKTransitionCoordinator {
     private var bottomTransitionController: SNKTransitionController?
     private var rightTransitionController: SNKTransitionController?
     
-    weak var sourceViewController: UIViewController?
+    weak var sourceViewController: SNKPresentableViewController?
 }
 
 extension SNKTransitionCoordinator {
     
-    func addDestinationViewController(destinationViewController: UIViewController,
+    func addDestinationViewController(destinationViewController: SNKViewController,
                                       forTransitionType transitionType: SNKTransitionType) {
         switch transitionType {
         case .fromTop:

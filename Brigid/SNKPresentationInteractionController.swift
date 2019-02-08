@@ -14,12 +14,12 @@ final class SNKPresentationInteractionController: UIPercentDrivenInteractiveTran
     private var shouldCompleteTransition = false
     
     private let transitionType: SNKTransitionType
-    private weak var sourceViewController: UIViewController?
-    private weak var destinationViewController: UIViewController?
+    private weak var sourceViewController: SNKPresentableViewController?
+    private weak var destinationViewController: SNKViewController?
     
     init(transitionType: SNKTransitionType,
-         sourceViewController: UIViewController?,
-         destinationViewController: UIViewController?) {
+         sourceViewController: SNKPresentableViewController?,
+         destinationViewController: SNKViewController?) {
         self.transitionType = transitionType
         self.sourceViewController = sourceViewController
         self.destinationViewController = destinationViewController
@@ -30,7 +30,7 @@ final class SNKPresentationInteractionController: UIPercentDrivenInteractiveTran
     }
     
     private func prepareGestureRecognizers() {
-        guard let view = sourceViewController?.view else { return }
+        guard let view = sourceViewController?.presentationGestureListenerView(forTransitionType: transitionType) else { return }
         let gesture = UIScreenEdgePanGestureRecognizer(target: self,
                                                        action: #selector(handleGesture(gestureRecognizer:)))
         gesture.edges = transitionType.edge

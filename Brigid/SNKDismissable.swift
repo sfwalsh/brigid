@@ -6,9 +6,14 @@
 //  Copyright © 2019 Stephen Walsh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol SNKDismissable {
+    
+    func dismissGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView?
+    
     func willBeginDismissalAnimation()
     func didEndDismissalAnimation()
 }
+
+typealias SNKDismissableViewController = SNKDismissable & UIViewController

@@ -26,15 +26,10 @@ final class DetailViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         performInitialSetup()
-        setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-        return [.top, .bottom]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +41,16 @@ final class DetailViewController: UIViewController {
 // MARK: SNKPresentable Implementation
 
 extension DetailViewController: SNKPresentable {
+    
+    func presentationGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
+        switch transitionType {
+        case .fromLeft, .fromRight:
+            return view
+        case .fromTop, .fromBottom:
+            // TODO: Should be some sort of drag indicator
+            return view
+        }
+    }
     
     func willBeginPresentationAnimation() {
         blurView.effect = nil
@@ -59,6 +64,16 @@ extension DetailViewController: SNKPresentable {
 // MARK: SNKDismissable Implementation
 
 extension DetailViewController: SNKDismissable {
+    
+    func dismissGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
+        switch transitionType {
+        case .fromLeft, .fromRight:
+            return view
+        case .fromTop, .fromBottom:
+            // TODO: Should be some sort of drag indicator
+            return view
+        }
+    }
     
     func willBeginDismissalAnimation() {
         blurView.effect = UIBlurEffect(style: .light)
