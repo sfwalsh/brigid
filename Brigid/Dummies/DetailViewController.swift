@@ -68,9 +68,8 @@ extension DetailViewController: SNKDismissable {
     func dismissGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
         switch transitionType {
         case .fromLeft, .fromRight:
-            return view
+            return nil
         case .fromTop, .fromBottom:
-            // TODO: Should be some sort of drag indicator
             return view
         }
     }

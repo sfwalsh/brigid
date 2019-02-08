@@ -31,22 +31,22 @@ final class CenterViewController: UIViewController {
         return button
     }()
     
-    let topViewController: DetailViewController = {
+    private let topViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
     
-    let leftViewController: DetailViewController = {
+    private let leftViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
     
-    let bottomViewController: DetailViewController = {
+    private let bottomViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
     
-    let rightViewController: DetailViewController = {
+    private let rightViewController: DetailViewController = {
         let viewController = DetailViewController()
         return viewController
     }()
@@ -58,6 +58,20 @@ final class CenterViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         
         return imageView
+    }()
+    
+    private let topDragView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        
+        return view
+    }()
+    
+    private let bottomDragView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        
+        return view
     }()
     
     init() {
@@ -82,19 +96,18 @@ extension CenterViewController: SNKPresentable {
     
     func presentationGestureListenerView(forTransitionType transitionType: SNKTransitionType) -> UIView? {
         switch transitionType {
+        case .fromTop:
+            return topDragView
+        case .fromBottom:
+            return bottomDragView
         case .fromLeft, .fromRight:
-            return view
-        case .fromTop, .fromBottom:
-            // TODO: Something else
-            return view
+            return nil
         }
     }
     
-    func willBeginPresentationAnimation() {
-    }
+    func willBeginPresentationAnimation() { }
     
-    func didEndPresentationAnimation() {
-    }
+    func didEndPresentationAnimation() { }
 }
 
 // MARK: Setup
@@ -112,6 +125,9 @@ extension CenterViewController {
         view.addSubview(dismissButton)
         view.addSubview(leftButton)
         view.addSubview(rightButton)
+        
+        view.addSubview(topDragView)
+        view.addSubview(bottomDragView)
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -150,6 +166,23 @@ extension CenterViewController {
             rightButton.heightAnchor.constraint(equalToConstant: 50.0)
             ])
         
+        topDragView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            topDragView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
+            topDragView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            topDragView.widthAnchor.constraint(equalToConstant: 100.0),
+            topDragView.heightAnchor.constraint(equalToConstant: 50.0)
+            ])
+        
+        bottomDragView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            bottomDragView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50.0),
+            bottomDragView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            bottomDragView.widthAnchor.constraint(equalToConstant: 100.0),
+            bottomDragView.heightAnchor.constraint(equalToConstant: 50.0)
+            ])
         
         swipeableTransitionCoordinator.addDestinationViewController(destinationViewController: topViewController,
                                                                     forTransitionType: .fromTop)

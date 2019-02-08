@@ -26,7 +26,7 @@ final class SNKTransitionController: NSObject, UIViewControllerTransitioningDele
         self.destinationViewController = destinationViewController
 
         self.presentationInteractionController = SNKPresentationInteractionController(transitionType: transitionType,
-                                                                               sourceViewController: sourceViewController,
+                                                                                      viewController: sourceViewController,
                                                                                destinationViewController: destinationViewController)
         
         self.dismissalInteractionController = SNKDismissalInteractionController(transitionType: transitionType,

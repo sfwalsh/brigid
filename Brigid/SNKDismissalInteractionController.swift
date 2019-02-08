@@ -27,7 +27,7 @@ final class SNKDismissalInteractionController: UIPercentDrivenInteractiveTransit
     }
     
     private func prepareGestureRecognizers() {
-        guard let view = viewController?.dismissGestureListenerView(forTransitionType: transitionType) else { return }
+        guard let view = viewController?.dismissGestureListenerView(forTransitionType: transitionType) ?? viewController?.view else { return }
         let gesture = createGestureRecognizer(forTransitionType: transitionType)
         view.addGestureRecognizer(gesture)
     }
