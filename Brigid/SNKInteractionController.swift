@@ -12,9 +12,9 @@ final class SNKInteractionController: UIPercentDrivenInteractiveTransition {
     
     var interactionInProgress = false
     private var shouldCompleteTransition = false
-    private let context: SNKTransitionContext
+    private let context: SNKInteractionContext
     
-    init(transitionContext: SNKTransitionContext) {
+    init(transitionContext: SNKInteractionContext) {
         self.context = transitionContext
         super.init()
         
@@ -27,7 +27,7 @@ final class SNKInteractionController: UIPercentDrivenInteractiveTransition {
         view.addGestureRecognizer(gesture)
     }
     
-    private func createGestureRecognizer(forContext context: SNKTransitionContext) -> UIPanGestureRecognizer {
+    private func createGestureRecognizer(forContext context: SNKInteractionContext) -> UIPanGestureRecognizer {
         
         switch context.transitionType {
         case .fromLeft, .fromRight:
@@ -48,6 +48,7 @@ final class SNKInteractionController: UIPercentDrivenInteractiveTransition {
         guard let gestureContainerView = gestureRecognizer.view?.superview else { return }
         
         let translation = gestureRecognizer.translation(in: gestureContainerView)
+        
         let progress = calculateProgress(for: translation)
         
         switch gestureRecognizer.state {
@@ -55,6 +56,10 @@ final class SNKInteractionController: UIPercentDrivenInteractiveTransition {
             interactionInProgress = true
             performContextAction()
         case .changed:
+            guard isCorrectDirection(forTranslation: translation) else {
+                cancel()
+                return
+            }
             shouldCompleteTransition = progress > context.progressNeededForCompletion
             updateGestureViewTransform(for: translation)
             update(progress)
@@ -121,6 +126,27 @@ extension SNKInteractionController {
             let screenHeight = UIScreen.main.bounds.height
             let progress = abs(translation.y / screenHeight)
             return CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
+        }
+    }
+    
+    private func isCorrectDirection(forTranslation translation: CGPoint) -> Bool {
+        switch (context.transitionType, context.action) {
+        case (.fromLeft, .presentation):
+            return translation.x > 0
+        case (.fromRight, .presentation):
+            return translation.x < 0
+        case (.fromBottom, .presentation):
+            return translation.y < 0
+        case (.fromTop, .presentation):
+            return translation.y > 0
+        case (.fromLeft, .dismissal):
+            return translation.x < 0
+        case (.fromRight, .dismissal):
+            return translation.x > 0
+        case (.fromBottom, .dismissal):
+            return translation.y > 0
+        case (.fromTop, .dismissal):
+            return translation.y < 0
         }
     }
 }

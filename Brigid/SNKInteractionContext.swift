@@ -1,5 +1,5 @@
 //
-//  SNKTransitionContext.swift
+//  SNKInteractionContext.swift
 //  Brigid
 //
 //  Created by Stephen Walsh on 08/02/2019.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct SNKTransitionContext {
+struct SNKInteractionContext {
     let action: SNKTransitionAction
     let transitionType: SNKTransitionType
     weak var gestureView: UIView?
     var transformsGestureView: Bool
 }
 
-extension SNKTransitionContext {
+extension SNKInteractionContext {
     
     var activeEdge: UIRectEdge {
         switch (transitionType, action) {
@@ -53,28 +53,28 @@ extension SNKTransitionContext {
 
 // MARK: Builders
 
-extension SNKTransitionContext {
+extension SNKInteractionContext {
     
     static func PresentationContext(sourceViewController: SNKPresentableViewController?,
                                     destinationViewController: UIViewController?,
-                                    transitionType: SNKTransitionType) -> SNKTransitionContext {
+                                    transitionType: SNKTransitionType) -> SNKInteractionContext {
         let action = SNKTransitionAction.presentation(sourceViewController: sourceViewController,
                                                       destinationViewController: destinationViewController)
         
         let gestureHandleView = sourceViewController?.presentationGestureHandleView(forTransitionType: transitionType)
         let shouldTransformGestureView = gestureHandleView != nil
-        return SNKTransitionContext(action: action,
+        return SNKInteractionContext(action: action,
                                     transitionType: transitionType,
                                     gestureView: gestureHandleView ?? sourceViewController?.view,
                                     transformsGestureView: shouldTransformGestureView)
     }
     
     static func DismissalContext(viewController: SNKDismissableViewController?,
-                                 transitionType: SNKTransitionType) -> SNKTransitionContext {
+                                 transitionType: SNKTransitionType) -> SNKInteractionContext {
         let action = SNKTransitionAction.dismissal(viewController: viewController)
         let gestureHandleView = viewController?.dismissalGestureHandleView(forTransitionType: transitionType)
         
-        return SNKTransitionContext(action: action,
+        return SNKInteractionContext(action: action,
                                     transitionType: transitionType,
                                     gestureView: gestureHandleView ?? viewController?.view,
                                     transformsGestureView: false)

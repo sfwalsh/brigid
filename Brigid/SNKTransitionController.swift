@@ -24,13 +24,13 @@ final class SNKTransitionController: NSObject, UIViewControllerTransitioningDele
         self.sourceViewController = sourceViewController
         self.destinationViewController = destinationViewController
         
-        let presentationTransitionContext = SNKTransitionContext.PresentationContext(sourceViewController: sourceViewController,
+        let presentationTransitionContext = SNKInteractionContext.PresentationContext(sourceViewController: sourceViewController,
                                                                          destinationViewController: destinationViewController,
                                                                          transitionType: transitionType)
         
         self.presentationInteractionController = SNKInteractionController(transitionContext: presentationTransitionContext)
         
-        let dismissalTransitionContext = SNKTransitionContext.DismissalContext(viewController: destinationViewController,
+        let dismissalTransitionContext = SNKInteractionContext.DismissalContext(viewController: destinationViewController,
                                                                                transitionType: transitionType)
         
         self.dismissalInteractionController = SNKInteractionController(transitionContext: dismissalTransitionContext)
